@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Las mejores recetas del chef</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f5efe8;
+      --bg-strong: #efe2d6;
+      --background-image:
+        radial-gradient(circle at top, rgba(255,255,255,0.75), rgba(245,239,232,0.2) 30%, rgba(233,217,208,0.8) 100%),
+        linear-gradient(135deg, #f9f3ed 0%, #f2e8df 38%, #eadfd2 100%);
+      --text: #1d1d1d;
+      --muted: #6e6a66;
+      --gold: #f6d7a8;
+      --gold-strong: #d7a55a;
+      --gold-dark: #4b2d12;
+      --ink: #2a2a2a;
+      --white: #fff;
+      --black: #111111;
+      --border: rgba(75,45,18,0.12);
+      --shadow: 0 18px 45px rgba(68, 49, 37, 0.12);
+      --shadow-soft: 0 10px 26px rgba(56, 45, 31, 0.08);
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-image: var(--background-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+
+    /* ===== TELA 1 – LANDING ===== */
+    #landing {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      color: #fff;
+      background-color: #201d1a;
+      background-image:
+        linear-gradient(120deg, rgba(26, 17, 11, 0.68), rgba(41, 27, 19, 0.38)),
+        url('Gemini_Generated_Image_ffh5w2ffh5w2ffh5.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    #landing::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.28));
+      pointer-events: none;
+    }
+
+    #landing > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    #landing .brand {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .chef-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f0f;
+      box-shadow: var(--shadow);
+    }
+    .chef-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 32px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .landing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,.5);
+      letter-spacing: 0.5px;
+    }
+
+    .landing-sub {
+      font-size: 20px;
+      margin-bottom: 36px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,.6);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, #f1c989 40%, #e8b96b 100%);
+      color: var(--gold-dark);
+      border: 1px solid rgba(75,45,18,0.12);
+      border-radius: 50px;
+      padding: 18px 46px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(180, 124, 47, 0.28);
+      transition: all .3s ease;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #f4d8ad 0%, #e7b869 100%);
+      color: var(--gold-dark);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 20px 36px rgba(117, 77, 28, 0.26);
+    }
+
+    /* ===== Ajustes para mobile ===== */
+    @media (max-width: 700px) {
+      header {
+        display: flex;
+        flex-direction: column; /* empilha logo e menu */
+        align-items: center;
+        gap: 6px;
+      }
+
+      header img {
+        width: 55px; /* reduz o tamanho da logo */
+        height: auto;
+      }
+
+      .logo-text {
+        text-align: center;
+        font-size: 1.1rem;
+        line-height: 1.2;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        font-size: 1rem;
+      }
+
+      nav a {
+        display: inline-block;
+        text-align: center;
+      }
+    }
+
+    /* ===== TELA 2 – ÁREA DE MEMBROS ===== */
+    .hidden { display: none !important; }
+
+    .header-fixed {
+      position: fixed;
+      inset: 0 0 auto 0;
+      background: rgba(255, 251, 247, 0.78);
+      backdrop-filter: blur(12px);
+      color: var(--text);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 30px rgba(56, 45, 31, 0.08);
+      border-bottom: 1px solid rgba(75,45,18,0.08);
+      z-index: 1000;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-logo .chef-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .header-logo .logo-text {
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .main-nav .nav-link {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 400;
+      padding-bottom: 4px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .main-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    .main-nav .nav-link:hover {
+      color: var(--gold-dark);
+    }
+    .main-nav .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .categorias-section {
+      padding: 110px 20px 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 44px;
+      font-weight: 300;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .categorias-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+
+    .categoria-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,235,0.92) 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: all .3s ease;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      animation: fadeUp .4s ease both;
+      overflow: hidden;
+    }
+
+    .categoria-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-strong), rgba(246,215,168,0.3));
+    }
+    @media (min-width: 700px) {
+      .categorias-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .categorias-grid {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    .categoria-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 35px rgba(78, 58, 34, 0.12);
+    }
+
+    .categoria-card.bloqueada {
+      cursor: not-allowed;
+    }
+
+    .categoria-card.bloqueada:hover {
+      transform: none;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .categoria-card.bloqueada .categoria-img img {
+      filter: grayscale(0.35);
+      opacity: 0.72;
+    }
+
+    .categoria-bloqueio {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(255, 251, 247, 0.72);
+      pointer-events: none;
+    }
+
+    .categoria-bloqueio span {
+      max-width: 250px;
+      padding: 12px 16px;
+      border: 1px solid rgba(75, 45, 18, 0.16);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.4;
+      box-shadow: 0 8px 18px rgba(56, 45, 31, 0.12);
+    }
+
+    .categoria-img {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .categoria-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .categoria-card:hover .categoria-img img {
+      transform: scale(1.03);
+    }
+
+    .categoria-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin: 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .categoria-card p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .receitas-section {
+      padding: 110px 20px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .btn-voltar {
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 26px;
+      transition: .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-voltar:hover {
+      background: var(--ink);
+      transform: translateX(-3px);
+    }
+
+    .receitas-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 700px) {
+      .receitas-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .receitas-grid {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    .receita-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,249,244,1) 100%);
+      border: 1px solid rgba(75,45,18,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: all .3s ease;
+      animation: fadeUp .4s ease both;
+    }
+    .receita-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px rgba(82, 61, 39, 0.12);
+    }
+
+    .receita-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .receita-card:hover .receita-img {
+      transform: scale(1.03);
+    }
+
+    .receita-content {
+      padding: 18px;
+    }
+    .receita-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .receita-content p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .receita-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-receita {
+      flex: 1;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 0;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 13px;
+      background: linear-gradient(135deg, var(--gold) 0%, #f3cc90 100%);
+      color: var(--gold-dark);
+      box-shadow: 0 10px 18px rgba(200,169,106,0.28);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all .3s ease;
+    }
+    .btn-receita:hover {
+      background: linear-gradient(135deg, #f9ddb3 0%, #ecbb77 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 20px rgba(200,169,106,0.38);
+    }
+
+    .footer {
+      background: linear-gradient(135deg, #1f1b1b 0%, #2a2422 100%);
+      color: #f8f0ea;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+      /* ===== Modal de video ===== */
+    .video-player{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      animation:fadeIn .25s ease-out;
+    }
+    .video-container{
+      width:min(92vw,900px);
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      background:#000;
+      box-shadow:0 10px 40px rgba(0,0,0,.45);
+    }
+    .video-container video{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .video-container iframe{
+      width:100%;
+      height:min(70vh, 520px);
+      border:0;
+      display:block;
+     }
+
+    .video-close{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:rgba(0,0,0,.65);
+      color:#fff;
+      border:none;
+      border-radius:999px;
+      padding:6px 14px;
+      font-size:14px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      z-index:10;
+    }
+    .video-close:hover{
+      background:rgba(0,0,0,.85);
+    }
+
+    /* ===== Sección Chef Presentación ajustada ===== */
+    .chef-apresentacao {
+      max-width: 1000px;
+      margin: 60px auto 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 20px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .chef-img-container {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .chef-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 12px 18px rgba(0,0,0,0.18);
+    }
+
+    .chef-conteudo {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .chef-conteudo h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .botao-garantir {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      background-color: #e63946;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .botao-garantir:hover {
+      background-color: #d62828;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .chef-apresentacao {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .chef-conteudo {
+        text-align: center;
+      }
+    }
+
+  </style>
+</head>
+<body class="lock">
+
+  <!-- ========= TELA 1: LANDING ========= -->
+  <section id="landing">
+    <div class="brand">
+      <div class="logo-text">YoLab</div>
+    </div>
+
+    <div>
+      <h1 class="landing-title">Las mejores recetas de yogur</h1>
+      <p class="landing-sub">Seleccionadas</p>
+      <button class="btn-primary" onclick="entrarAreaMembros()">Acceder a recetas</button>
+    </div>
+  </section>
+
+  <!-- ========= TELA 2: ÁREA DE MEMBROS ========= -->
+  <div id="app" class="hidden">
+    <header class="header-fixed">
+      <div class="header-logo">
+        <div class="logo-text">YoLab</div>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-link" onclick="regresarInicio()">Inicio</button>
+        <button class="nav-link" onclick="irParaClases()">Clases</button>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="categorias-section" id="categorias">
+        <h2 class="section-title">Categorías</h2>
+        <p class="section-subtitle">Explora el mundo del yogur artesanal.</p>
+
+        <div class="categoria-card" 
+          style="border: 3px solid red; border-radius: 16px;"
+          onclick="window.open('https://drive.google.com/drive/folders/1At-7wxzkK7W4EWE99rG5nRZn-dwxG3tj?usp=sharing', '_blank')">
+            <h3>¡Accede a tus libros electrónicos aquí!</h3>
+            <p>Descárgalos ahora y descubre secretos de grandes chefs.</p>
+            <span class="receitas-count" style="color: red;">
+              Haz clic aquí para acceder a tus libros electrónicos
+            </span>
+         </div>
+
+        <div class="categorias-grid">
+          <div class="categoria-card" onclick="abrirCategoria('Con frutas',1)">
+            <div class="categoria-img"><img src="Frutas naturais/Gemini_Generated_Image_vgw397vgw397vgw3 (1).png" alt="Frutas"></div>
+            <h3>Con frutas</h3>
+            <p>Yogures con trozos y salsas naturales.</p>
+          </div>
+
+          <div class="categoria-card" onclick="abrirCategoria('Probióticos',2)">
+            <div class="categoria-img"><img src="probioticos/Gemini_Generated_Image_kpesv1kpesv1kpes.png" alt="Probióticos"></div>
+            <h3>Probióticos</h3>
+            <p>Fermentos y técnicas para una fermentación saludable.</p>
+          </div>
+
+          <div class="categoria-card bloqueada" data-categoria-bloqueada="3" onclick="abrirCategoria('Griego',3)">
+            <div class="categoria-img"><img src="estilo grego/Gemini_Generated_Image_mprjf4mprjf4mprj.png" alt="Griego"></div>
+            <h3>Griego</h3>
+            <p>Cremoso, intenso e irresistible.</p>
+            <div class="categoria-bloqueio" aria-label="Griego disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
+          </div>
+
+          <div class="categoria-card bloqueada" data-categoria-bloqueada="4" onclick="abrirCategoria('Vegano',4)">
+            <div class="categoria-img"><img src="vegano/Gemini_Generated_Image_35640d35640d3564.png" alt="Vegano"></div>
+            <h3>Vegano</h3>
+            <p>Alternativas con leche vegetal y textura cremosa.</p>
+            <div class="categoria-bloqueio" aria-label="Vegano disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
+          </div>
+
+          <div class="categoria-card bloqueada" data-categoria-bloqueada="5" onclick="abrirCategoria('Infantil',5)">
+            <div class="categoria-img"><img src="kids/Gemini_Generated_Image_q5ctbhq5ctbhq5ct.png" alt="Infantil"></div>
+            <h3>Infantil</h3>
+            <p>Recetas suaves, sabrosas y nutritivas para los más pequeños.</p>
+            <div class="categoria-bloqueio" aria-label="Infantil disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="receitas-section hidden" id="receitas">
+        <button class="btn-voltar" onclick="regresarCategorias()">← Volver</button>
+        <h2 class="section-title" id="receitasTitulo"></h2>
+        <div class="receitas-grid" id="receitasGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 YoLab – Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- ========= SCRIPTS ========= -->
+  <script>
+    /* ======= Navegación Landing / App ======= */
+    function entrarAreaMembros(){
+      document.body.classList.remove('lock');
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    function regresarInicio(){
+      document.getElementById('receitas').classList.add('hidden');
+      document.getElementById('categorias').classList.remove('hidden');
+      document.getElementById('app').classList.add('hidden');
+      document.getElementById('landing').classList.remove('hidden');
+      document.body.classList.add('lock');
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    /* ======= Base de datos de recetas ======= */
+    const receitasPorCategoria = {
+      1: [
+        { nome:"YOGUR CASERO", descricao:"Sin Termómetro, Sin Horno, Sin Yogurtera", imagem:"Frutas naturais/TAÇA DE IOGURTE COM MORANGO.jpeg", video:"https://youtu.be/0zDKtQUoRuk?si=sZJVaK9O8EwviWPt" },
+        { nome:"Batido de yogur con frutas", descricao:"Bebida cremosa y fría hecha con yogur y frutas variadas, perfecta para el desayuno.", imagem:"Frutas naturais/SMOOTHIE DE IOGUTE COM FRUTAS.jpeg", video:"https://youtu.be/rQfQfEZKWIc?si=n0fTgH6cF7hPpYlE" },
+        { nome:"Ensalada de frutas con yogur", descricao:"Mezcla de frutas coloridas con yogur natural, ligera, nutritiva y lista en minutos.", imagem:"Frutas naturais/SALADA DE FRUTAS COM IOGURT.png", video:"https://youtu.be/AgaLFlTJO_Y?si=E8VZ66yKM--b7D14" },
+        { nome:"Paleta de yogur con frutas rojas", descricao:"Postre congelado y saludable, con el sabor intenso de las frutas rojas y la frescura del yogur.", imagem:"Frutas naturais/PICOLE DE IOGURTE COM FRUTAS VERMELHAS.jpeg", video:"https://youtu.be/M-lTjzWq8CE?si=vOxh9So__3_GbCBO" },
+        { nome:"Yogur natural integral", descricao:"Yogur puro, cremoso y consistente, ideal para comer solo o en recetas.", imagem:"Frutas naturais/IOGURTE NATURAL INTEGRAL.jpeg", video:"https://youtu.be/Wdzzdo5CHSM?si=MyYF-4vd8Jlt0y4e" },
+        { nome:"Yogur natural desnatado", descricao:"Versión ligera del yogur natural, con menos grasa y sin perder sabor ni textura.", imagem:"Frutas naturais/IOGURTE DESNATADO.png", video:"https://youtu.be/0nNhz4lbEVQ?si=6L7vmlvwrXrlNNjo" },
+        { nome:"Yogur de chía con fresa", descricao:"Mezcla funcional y refrescante con yogur, fresa y semillas de chía para mayor saciedad.", imagem:"Frutas naturais/IOGURTE DE CHIA COM MORANGO.jpeg", video:"https://youtu.be/g5ShEyLZBiA?si=QNyU9nUBYO6kJXMA" },
+        { nome:"Yogur con avena, chía y plátano", descricao:"Vaso energético y nutritivo hecho con yogur natural, plátano maduro, chía y avena.", imagem:"Frutas naturais/IOGURTE COM AVEIA CHIA E BANANA.jpeg", video:"https://youtu.be/5cEAjD_yew8?si=deNN9yyVgbaTEzO8" },
+        { nome:"Yogur natural con frutas rojas", descricao:"El mejor yogur de frutas rojas.", imagem:"Frutas naturais/sorvete-de-iogurte-natural-com-frutas-vermelhas.jpg", video:"https://youtu.be/bLPpWmAwdBY?si=yOOQiH2pZzHbTcdP" },
+        { nome:"Pannacotta de yogur", descricao:"Esta receta es increíble.", imagem:"Frutas naturais/panacota de morango.jpeg", video:"https://youtu.be/c5xGedGZEak?si=wCXUghGZWZV0HWoz" }
+      ],
+      2: [
+        { nome:"Hacer Yogur Casero. Probiótico", descricao:"Nutrición funcional con fermentación natural.", imagem:"probioticos/Aveia pro biótica.jpg", video:"https://youtu.be/ok0k6Qk0tjQ?si=uqXV8W9k1Vutot_3" },
+        { nome:"Yakult casero con suero de kéfir", descricao:"Versión saludable con fermentación casera.", imagem:"probioticos/COMO FAZER YAKULT CASEIRO DE SORO KEFIR.jpg", video:"https://youtu.be/5qxNkjKsNAk?si=-HieX43mNb1egCclk" },
+        { nome:"Probiótico: chucrut de repollo", descricao:"Repollo fermentado, rico en probióticos.", imagem:"probioticos/PRO BIOTICO CHOCRUTE DE REPOLHO.jpg", video:"https://youtu.be/InTt_xM26u0?si=HR9Z3yg9ioVS7T5-" },
+        { nome:"Probiótico de manzana", descricao:"Fermentado afrutado, ligero y funcional.", imagem:"probioticos/pro biótico de maçã.png", video:"https://youtu.be/pE8XbdzDFok?si=nMslFZL5CNzVuezY" },
+        { nome:"Probiótico de ñame con fresa", descricao:"Mezcla cremosa, fresca y funcional.", imagem:"probioticos/PROBIOTICO DE INHAME COM MORANGO.jpg", video:"https://youtu.be/tv9qDgQf4-E?si=uGetEEMIoImp9X1t" },
+        { nome:"Rejuvelac de linaza", descricao:"Bebida enzimática probiótica revitalizante.", imagem:"probioticos/REJUVELAC DE LINHAÇA.jpeg", video:"https://youtu.be/NHScV4h2p48?si=g224cmgVOACjX-CS" },
+        { nome:"Tepache de naranja (bebida probiótica)", descricao:"Fermentado cítrico, energético y refrescante.", imagem:"probioticos/TEPACHE DE LARANJA (BEBIDA PROBIOTICA).jpg", video:"https://youtu.be/EPjOk-HIvXQ?si=5lFNTT6q7tTZVcGD" },
+        { nome:"Yakult casero", descricao:"Probiótico ligero hecho en casa.", imagem:"probioticos/Yakult caseiro.jpg", video:"https://youtu.be/Gy74xfXd5-U?si=_CjiN2vuYZpV_Rt6" }
+      ],
+      3: [
+        { nome:"YOGURT GRIEGO CASERO", descricao:"Como hacer yogurt griego casero, sin máquina y con tan solo 2 ingredientes.", imagem:"Frutas naturais/TAÇA DE IOGURTE COM MORANGO.jpeg", video:"https://youtu.be/1H44MzxnKf8?si=vLF96AUF60AKOY6j" },
+        { nome:"Yogur griego con frutas", descricao:"Combinación fresca, dulce y nutritiva.", imagem:"estilo grego/Iogurte grego com frutas.jpeg", video:"https://youtu.be/8D1a3Yu5Pn8?si=7tKqKSOQFuce5XZr" },
+        { nome:"Yogur griego tradicional", descricao:"Textura densa, cremosa y rica.", imagem:"estilo grego/IOGURTE GREGO TRADICIONAL.jpg", video:"https://youtu.be/cA5a25IhFGA?si=UPpI6w-0WSczHG5_" },
+        { nome:"Yogur griego sin colar", descricao:"Versión práctica, rápida y sabrosa.", imagem:"estilo grego/iogurte-grego sem coar.jpg", video:"https://youtu.be/Q4LNIPLBlUw?si=Xwkb3fqPwPQCHVvN" },
+        { nome:"Mousse de limón con yogur griego", descricao:"Cremoso, cítrico, frío y refrescante.", imagem:"estilo grego/MOUSE DE LIMAO COM IOGUTE GREGO.jpeg", video:"https://youtu.be/qHyjvtMBSj8?si=TtH9_ti9f-LmqTx3" },
+        { nome:"Patés con yogur griego", descricao:"Queso crema ligero, versátil y saludable.", imagem:"estilo grego/Patês com iogurte grego.jpeg", video:"https://youtu.be/GermS6v6tXk?si=E4Ge3FooNYtHiM0n" },
+        { nome:"Postre de yogur griego con cereza", descricao:"Dulce frutado, cremoso y elegante.", imagem:"estilo grego/sobremesa de iogurte grego com cereja.jpeg", video:"https://youtu.be/99a3pYOTBLM?si=cR-H-1MitAqfkBMZ" },
+        { nome:"Helado de yogur griego con frutas rojas", descricao:"Helado cremoso con acidez equilibrada.", imagem:"estilo grego/SORVETE DE IOGURTE GREGO COM FRUTAS VERMELHAS.jpg", video:"https://youtu.be/ly99ZM47HG4?si=nCgmza3ddLS60P_c" },
+        { nome:"Tzatziki (pasta de yogur griego)", descricao:"Salsa fresca mediterránea con pepino.", imagem:"estilo grego/Tzatziki - Pasta de iogurte grego.jpg", video:"https://youtu.be/SKpgrRE3OmA?si=iJUGdyxvf0_7e899" },
+        { nome:"Yakult con el suero del yogur griego", descricao:"Probiótico suave con toque cítrico.", imagem:"estilo grego/YAKULT COM O SORO DO IOGURTE GREGO.jpeg", video:"https://youtu.be/SJJkplmC5dg?si=e-ePF6ZF5qxmR1LN" }
+      ],
+      4: [
+        { nome:"Yogur de cacahuete", descricao:"Cremoso, proteico, ligero y nutritivo.", imagem:"vegano/IOGURTE DE AMENDOIN.jpeg", video:"https://youtu.be/G1IwFF4yX8Y?si=l6y3Z3Nzhspi0-zU" },
+        { nome:"Yogur de anacardo", descricao:"Sabor suave, textura ligera y sedosa.", imagem:"vegano/IOGURTE DE CAJU.jpeg", video:"https://youtu.be/NzRbOLnNO5Q?si=ZdauXOZA7HZKLByW" },
+        { nome:"Yogur de coco sabroso", descricao:"Coco cremoso con toque tropical.", imagem:"vegano/IOGURTE DE COCO SABOROSO.jpeg", video:"https://youtu.be/K5FaDZCD_fY?si=iIfNDaRgdxESdu7i" },
+        { nome:"Yogur de coco seco", descricao:"Fermentado denso con sabor intenso.", imagem:"vegano/IOGURTE DE COCO SECO.jpeg", video:"https://youtu.be/5r2rJv1xCQ4?si=dQ4oa0B4uHEr3pLE" },
+        { nome:"Yogur sin lácteos", descricao:"Notas picantes suaves y funcionales.", imagem:"vegano/IOGURTE FERMENTADO COM O CABINHO DA PIMENTA.jpeg", video:"https://youtu.be/1ySuhuaPRJc?si=VOmEJvlq-SUi5QGo" },
+        { nome:"YOGURT VEGANO", descricao:"Mezcla cremosa vegetal, sabor equilibrado.", imagem:"vegano/IOGURTE VEGANO DE CASTANHAS E COCO.jpeg", video:"https://youtu.be/H4XjxR-nHOE?si=hugPSbQn_hoNbfhc" },
+        { nome:"Yogur de ñame con fresa", descricao:"Cremoso natural con frescor frutado.", imagem:"vegano/iogurte-inhame-com-morango.jpeg", video:"https://youtu.be/tv9qDgQf4-E?si=kP_gZ19BIHJqk8OW",}
+        { nome:"3 opciones de yogur vegano", descricao:"Trío vegetal cremoso, ligero y nutritivo.", imagem:"vegano/3 OPÇOES DE IOGURTE VEGANO.jpeg", video:"https://youtu.be/4fiaopGnW3A?si=WrCI6HWqmgrsf5DM" }
+      ],
+      5: [
+        { nome:"Danete casero saludable", descricao:"Crema ligera, funcional y deliciosa.", imagem:"kids/danete caseiro saldavel.jpeg", video:"https://youtube.com/shorts/wLPJggyfUXg?si=enBUP3nuaVgwH2ky" },
+        { nome:"Danete casero proteico", descricao:"Cremoso, nutritivo y rico en proteína.", imagem:"kids/danete-caseiro- proteico.jpeg", video:"https://youtu.be/3K7_g4OQPdQ?si=DPSOaSVRbQV-N3tr" },
+        { nome:"Danonino casero con fresas", descricao:"Dulce cremoso natural con fresas.", imagem:"kids/DANONINHO CASEIRO COM MORANGOS.jpeg", video:"https://youtube.com/shorts/wwtwkR4aDF8?si=Qd6fsc9lSJB2Dkkv" },
+        { nome:"Danonino de remolacha", descricao:"Colorido, nutritivo, dulce y funcional.", imagem:"kids/DANONINHO DE BETERRABA.jpeg", video:"https://youtube.com/shorts/lXTEEnROhBg?si=VNhiRb56hFktp_ph" },
+        { nome:"Danonino para bebés", descricao:"Versión ligera, natural y sin azúcar.", imagem:"kids/DANONINHO PARA BEBES.jpeg", video:"https://youtu.be/9oRq7EsnJDs?si=-N67IxBhbmhRYEfS" }
+      ]
+    };
+
+    /* ======= Renderização de receitas ======= */
+    const dataLiberacaoCategorias = new Date('2026-09-17T18:00:00');
+
+    function categoriasEstaoBloqueadas() {
+      return new Date() < dataLiberacaoCategorias;
+    }
+
+    function atualizarBloqueioCategorias() {
+      const bloqueadas = categoriasEstaoBloqueadas();
+      document.querySelectorAll('[data-categoria-bloqueada]').forEach(card => {
+        card.classList.toggle('bloqueada', bloqueadas);
+        const aviso = card.querySelector('.categoria-bloqueio');
+        if (aviso) aviso.hidden = !bloqueadas;
+      });
+    }
+
+    function abrirCategoria(titulo, index) {
+      if ([3, 4, 5].includes(index) && categoriasEstaoBloqueadas()) return;
+
+      const receitasSection = document.getElementById('receitas');
+      const categoriasSection = document.getElementById('categorias');
+      const receitasTitulo = document.getElementById('receitasTitulo');
+      const receitasGrid = document.getElementById('receitasGrid');
+
+      receitasTitulo.textContent = titulo;
+      receitasGrid.innerHTML = '';
+
+      const lista = receitasPorCategoria[index] || [];
+      lista.forEach(rec => {
+        const card = document.createElement('div');
+        card.className = 'receita-card';
+        card.innerHTML = `
+          <img class="receita-img" src="${rec.imagem}" alt="${rec.nome}">
+          <div class="receita-content">
+            <h4>${rec.nome}</h4>
+            <p>${rec.descricao}</p>
+            <div class="receita-buttons">
+              <button class="btn-receita btn-video" onclick="abrirVideo('${rec.video}')">Ver video</button>
+            </div>
+          </div>
+        `;
+        receitasGrid.appendChild(card);
+      });
+
+      categoriasSection.classList.add('hidden');
+      receitasSection.classList.remove('hidden');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function regresarCategorias(){
+      document.getElementById('receitas').classList.add('hidden');
+      document.getElementById('categorias').classList.remove('hidden');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    /* ======= Player de vídeo (modal) ======= */
+    function abrirVideo(src){
+      if (!src) return;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'video-player';
+
+      const youtubeMatch = src.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/);
+      const driveMatch = src.match(/https?:\/\/drive\.google\.com\/file\/d\/([^/]+)/);
+
+      if (youtubeMatch) {
+        const videoId = youtubeMatch[1];
+        const embedSrc = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`;
+
+        wrap.innerHTML = `
+          <div class="video-container">
+            <button class="video-close" onclick="cerrarVideo()">← Volver</button>
+            <iframe src="${embedSrc}" title="Video de receta" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        `;
+      } else if (driveMatch) {
+        const id = driveMatch[1];
+        const embedSrc = `https://drive.google.com/file/d/${id}/preview`;
+
+        wrap.innerHTML = `
+          <div class="video-container">
+            <button class="video-close" onclick="cerrarVideo()">← Volver</button>
+            <iframe src="${embedSrc}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        `;
+      } else {
+        wrap.innerHTML = `
+          <div class="video-container">
+            <button class="video-close" onclick="cerrarVideo()">← Volver</button>
+            <video src="${src}" controls autoplay playsinline>Tu navegador no admite video HTML5.</video>
+          </div>
+        `;
+      }
+
+      document.body.appendChild(wrap);
+    }
+
+    function cerrarVideo(){
+      const modal = document.querySelector('.video-player');
+      if (modal) {
+        const video = modal.querySelector('video');
+        if(video){
+          video.pause();
+          video.currentTime = 0;
+        }
+        modal.remove();
+      }
+    }
+
+    /* ======= Visualizar eBook (modal) ======= */
+    function descargarEbook(src){
+      if(!src) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'ebook-viewer';
+      wrap.innerHTML = `
+        <div class="ebook-viewer-container">
+          <button class="ebook-viewer-close" onclick="cerrarEbookViewer()">← Volver</button>
+          <img src="${src}" alt="eBook" class="ebook-image">
+        </div>
+      `;
+      document.body.appendChild(wrap);
+    }
+  function cerrarEbookViewer(){
+  const modal=document.querySelector('.ebook-viewer');
+  if(modal){ modal.remove(); }
+  }
+    
+  let agora = new Date();
+
+    window.abrirCategoria = abrirCategoria;
+    window.regresarCategorias = regresarCategorias;
+    atualizarBloqueioCategorias();
+    window.irParaClases = function(){
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+      document.body.classList.remove('lock');
+      regresarCategorias();
+    };
+    
+  </script>
+  
+</body>
+</html>
+
+
