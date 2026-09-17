@@ -319,44 +319,6 @@
       box-shadow: 0 16px 35px rgba(78, 58, 34, 0.12);
     }
 
-    .categoria-card.bloqueada {
-      cursor: not-allowed;
-    }
-
-    .categoria-card.bloqueada:hover {
-      transform: none;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .categoria-card.bloqueada .categoria-img img {
-      filter: grayscale(0.35);
-      opacity: 0.72;
-    }
-
-    .categoria-bloqueio {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(255, 251, 247, 0.72);
-      pointer-events: none;
-    }
-
-    .categoria-bloqueio span {
-      max-width: 250px;
-      padding: 12px 16px;
-      border: 1px solid rgba(75, 45, 18, 0.16);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.94);
-      color: var(--text);
-      font-weight: 700;
-      line-height: 1.4;
-      box-shadow: 0 8px 18px rgba(56, 45, 31, 0.12);
-    }
-
     .categoria-img {
       width: 100%;
       height: 160px;
@@ -675,25 +637,22 @@
             <p>Fermentos y técnicas para una fermentación saludable.</p>
           </div>
 
-          <div class="categoria-card bloqueada" data-categoria-bloqueada="3" onclick="abrirCategoria('Griego',3)">
+          <div class="categoria-card" onclick="abrirCategoria('Griego',3)">
             <div class="categoria-img"><img src="estilo grego/Gemini_Generated_Image_mprjf4mprjf4mprj.png" alt="Griego"></div>
             <h3>Griego</h3>
             <p>Cremoso, intenso e irresistible.</p>
-            <div class="categoria-bloqueio" aria-label="Griego disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
           </div>
 
-          <div class="categoria-card bloqueada" data-categoria-bloqueada="4" onclick="abrirCategoria('Vegano',4)">
+          <div class="categoria-card" onclick="abrirCategoria('Vegano',4)">
             <div class="categoria-img"><img src="vegano/Gemini_Generated_Image_35640d35640d3564.png" alt="Vegano"></div>
             <h3>Vegano</h3>
             <p>Alternativas con leche vegetal y textura cremosa.</p>
-            <div class="categoria-bloqueio" aria-label="Vegano disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
           </div>
 
-          <div class="categoria-card bloqueada" data-categoria-bloqueada="5" onclick="abrirCategoria('Infantil',5)">
+          <div class="categoria-card" onclick="abrirCategoria('Infantil',5)">
             <div class="categoria-img"><img src="kids/Gemini_Generated_Image_q5ctbhq5ctbhq5ct.png" alt="Infantil"></div>
             <h3>Infantil</h3>
             <p>Recetas suaves, sabrosas y nutritivas para los más pequeños.</p>
-            <div class="categoria-bloqueio" aria-label="Infantil disponible mañana a partir de las 18:00"><span>Disponible mañana a partir de las 18:00</span></div>
           </div>
         </div>
       </section>
@@ -785,24 +744,7 @@
     };
 
     /* ======= Renderização de receitas ======= */
-    const dataLiberacaoCategorias = new Date('2026-09-17T18:00:00');
-
-    function categoriasEstaoBloqueadas() {
-      return new Date() < dataLiberacaoCategorias;
-    }
-
-    function atualizarBloqueioCategorias() {
-      const bloqueadas = categoriasEstaoBloqueadas();
-      document.querySelectorAll('[data-categoria-bloqueada]').forEach(card => {
-        card.classList.toggle('bloqueada', bloqueadas);
-        const aviso = card.querySelector('.categoria-bloqueio');
-        if (aviso) aviso.hidden = !bloqueadas;
-      });
-    }
-
     function abrirCategoria(titulo, index) {
-      if ([3, 4, 5].includes(index) && categoriasEstaoBloqueadas()) return;
-
       const receitasSection = document.getElementById('receitas');
       const categoriasSection = document.getElementById('categorias');
       const receitasTitulo = document.getElementById('receitasTitulo');
@@ -915,7 +857,6 @@
 
     window.abrirCategoria = abrirCategoria;
     window.regresarCategorias = regresarCategorias;
-    atualizarBloqueioCategorias();
     window.irParaClases = function(){
       document.getElementById('landing').classList.add('hidden');
       document.getElementById('app').classList.remove('hidden');
